@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import "./App.css";
+import EmployeeCreate from "./components/Employee-Create/Employee-Create";
+import EmployeeSingleView from "./components/Employee-Single-View/Employee-Single-View";
+import EmployeeUpdate from "./components/Employee-Update/Employee-Update";
+import AllEmployees from "./components/Employee-View/Employee-View";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div>
+			<Router>
+				<Switch>
+					<Route
+						exact
+						path="/update-employee/:id"
+						component={EmployeeUpdate}
+					/>
+
+					<Route exact path="/" component={AllEmployees} />
+					<Route exact path="/employees" component={AllEmployees} />
+					<Route
+						exact
+						path="/create-employee"
+						component={EmployeeCreate}
+					/>
+					<Route
+						exact
+						path="/view-employee/:id"
+						component={EmployeeSingleView}
+					/>
+				</Switch>
+			</Router>
+		</div>
+	);
 }
 
 export default App;
